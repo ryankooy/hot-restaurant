@@ -106,7 +106,7 @@
 
             // Call to the API - Waiting List
             $.ajax({
-                url: "/api/tables",
+                url: "/api/waitlist",
                 method: "GET"
             }).then(function(response) {
 
@@ -120,7 +120,7 @@
                     h3.prepend(button);
                     newDiv.append(h3);
                     tr.append(newDiv);
-                    $("#reservations").append(tr);
+                    $("#waitlist").append(tr);
                 }
 
             });
