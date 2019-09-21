@@ -13,7 +13,9 @@ var guests = [
     {
         routeName: "maurice",
         name: "Maurice",
-
+        phoneNumber: "919-103-4956",
+        email: "maurice@awesome.com",
+        id: "sauce"
     }
 ];
 
@@ -29,25 +31,25 @@ app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-app.get("api/guests", function(req, res) {
+app.get("/api/tables", function(req, res) {
     return res.json(guests);
 });
 
-app.get("/api/guests/:guest", function (req, res) {
-    var currGuest = req.params.guest;
+// app.get("/api/tables/:guest", function (req, res) {
+//     var table = req.params.guest;
 
-    console.log(currGuest);
+//     console.log(table);
 
-    for (var i = 0; i < guests.length; i++) {
-        if(currGuest === guests[i].routeName) {
-            return res.json(guests[i]);
-        }
-    }
+//     // for (var i = 0; i < guests.length; i++) {
+//     //     if(table === guests[i].routeName) {
+//     //         return res.json(guests[i]);
+//     //     }
+//     // }
 
-    return res.json(false);
-});
+//     // return res.json(false);
+// });
 
-app.post("/api/guests", function(req, res) {
+app.post("/api/waitlist", function(req, res) {
     var newGuest = req.body;
     newGuest.routeName = newGuest.name.replace(/\s+/g, "").toLowerCase();
     console.log(newGuest);
