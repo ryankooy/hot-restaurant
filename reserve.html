@@ -65,9 +65,9 @@
             id: $("#id").val().trim()
         };
 
-        $.post("/api/guest", newReserve)
+        $.post("/api/tables", newReserve)
         .then(function(data) {
-            console.log("/reserve", data);
+            console.log("reserve.html", data);
         });
     });
     </script>
