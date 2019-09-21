@@ -1,11 +1,8 @@
 var express = require("express");
 var path = require("path");
-var reserve = require("./reserve.html");
 
 var app = express();
-// var PORT = process.env.PORT || 2940;
-var PORT = 2940;
-
+var PORT = process.env.PORT || 2940;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -38,21 +35,21 @@ app.get("/api/tables", function(req, res) {
     return res.json(reservations);
 });
 
-app.et("/api/waitlist", function(req, res) {
+app.get("/api/waitlist", function(req, res) {
     return res.json(waitlisted);
 });
 
-if(reservations.length > 3) {
-    app.post("/api/waitlist", function(req, res) {
+app.post("/api/tables", function(req, res) {
+  var newReserve = req.body;
+  newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
+  console.log(newReserve);
+    if(reservations.length > 3) {
         waitlisted.push(newReserve);
-        alert("Tables are currently full. We have added you to our waitlist.");
-    });
-} else {
-    app.post("/api/tables", function(req, res) {
+    } else {
         reservations.push(newReserve);
-        alert("Your reservation is complete!");
-    });
-}
+    }
+  res.json(newCharacter);
+});
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
