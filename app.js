@@ -52,11 +52,12 @@ app.post("/api/tables", function(req, res) {
     newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
     console.log(newReserve);
     if(reservations.length > 3) {
-        reservations.push(newReserve);
-    } else {
         waitlisted.push(newReserve);
+        res.json(newReserve);
+    } else {
+        reservations.push(newReserve);
+        res.json(newReserve);
     }
-  res.json(newReserve);
 });
 
 app.listen(PORT, function() {
