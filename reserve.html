@@ -64,6 +64,11 @@
         $.post("/api/tables", newReserve)
         .then(function(data) {
             console.log("reserve.html", data);
+            alert("You reservation is saved!")
+            $("#name").empty();
+            $("#phone").empty();
+            $("#email").empty();
+            $("#id").empty();
         });
     });
     </script>
