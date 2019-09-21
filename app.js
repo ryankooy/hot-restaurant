@@ -46,7 +46,8 @@ app.get("/api/waitlist", function(req, res) {
     return res.json(waitlisted);
 });
 
-app.POST("/api/tables", function(req, res) {
+
+app.post("/api/tables", function(req, res) {
   var newReserve = req.body;
   newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
   console.log(newReserve);
