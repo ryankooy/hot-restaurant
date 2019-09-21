@@ -36,18 +36,34 @@
                     <div class="card-header">
                         <h5>Current Reservations</h5>
                     </div>
-                    <div class="card-body" id="reservations">
+                    <div class="card-body">
+
+                        <table class="w-100 p-3">
+                            <tbody id="reservations">
+                                <!-- Existing Reservations will display here -->
+                            </tbody>
+
+                        </table>
+
                     </div>
                 </div>
 
                 <!-- Waiting List -->
                 <div class="card mb-3">
-                    <div class="card-header">
-                        <h5>Waiting List</h5>
+                        <div class="card-header">
+                            <h5>Waiting List</h5>
+                        </div>
+                        <div class="card-body">
+    
+                            <table class="w-100 p-3">
+                                <tbody id="waitlist">
+                                    <!-- Waiting List Data will display here -->
+                                </tbody>
+    
+                            </table>
+    
+                        </div>
                     </div>
-                    <div class="card-body" id="reservations">
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -59,6 +75,47 @@
             <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
         </div>
     </footer>
+
+
+    <script>
+
+        $(document).ready() 
+            var sampleData = ["Name 1", "Name 2", "Name 3", "Name 4"];
+
+            // Reservation Data - Simple Loop
+            for (var i = 0; i < sampleData.length; i++) {
+                var tr = $("<tr>");
+                var newDiv = $("<div>").addClass("card-header mb-3");
+                var button = $("<button>").addClass("btn btn-primary").text(i+1);
+                var h3 = $("<h3>").text(" | " + sampleData[i]);
+
+                h3.prepend(button);
+                newDiv.append(h3);
+                tr.append(newDiv);
+                $("#reservations").append(tr);
+            }
+
+            // Waitlist Data - Simple Loop
+            for (var i = 0; i < sampleData.length; i++) {
+                var tr = $("<tr>");
+                var newDiv = $("<div>").addClass("card-header mb-3");
+                var button = $("<button>").addClass("btn btn-primary").text(i+1);
+                var h3 = $("<h3>").text(" | " + sampleData[i]);
+
+                h3.prepend(button);
+                newDiv.append(h3);
+                tr.append(newDiv);
+                $("#waitlist").append(tr);
+            }
+
+        
+    
+    
+    
+    </script>
+
+
+
 
 </body>
 
