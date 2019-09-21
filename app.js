@@ -11,9 +11,16 @@ var reservations = [
     {
         routeName: "maurice",
         name: "Maurice",
-        phoneNumber: "919-103-4956",
+        phoneNumber: 9391029302,
         email: "maurice@awesome.com",
         id: "sauce"
+    },
+    {
+        routeName: "miran",
+        name: "Miran",
+        phoneNumber: 3019204839,
+        email: "lakwwlk@lgiaoz.com",
+        id: "Boston"
     }
 ];
 
