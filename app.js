@@ -39,7 +39,7 @@ app.get("/api/waitlist", function(req, res) {
     return res.json(waitlisted);
 });
 
-app.post("/api/tables", function(req, res) {
+app.POST("/api/tables", function(req, res) {
   var newReserve = req.body;
   newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
   console.log(newReserve);
@@ -48,7 +48,7 @@ app.post("/api/tables", function(req, res) {
     } else {
         reservations.push(newReserve);
     }
-  res.json(newCharacter);
+  res.json(newReserve);
 });
 
 app.listen(PORT, function() {
