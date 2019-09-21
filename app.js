@@ -47,21 +47,14 @@ app.get("/api/waitlist", function(req, res) {
     return res.json(waitlisted);
 });
 
-if(reservations.length > 3) {
-    var list = "/api/waitlisted";
-    full = true;
-} else {
-    list = "/api/tables";
-}
-
-app.post(list, function(req, res) {
-  var newReserve = req.body;
-  newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
-  console.log(newReserve);
-    if(full) {
-        waitlisted.push(newReserve);
-    } else {
+app.post("/api/tables", function(req, res) {
+    var newReserve = req.body;
+    newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
+    console.log(newReserve);
+    if(reservations.length > 3) {
         reservations.push(newReserve);
+    } else {
+        waitlisted.push(newReserve);
     }
   res.json(newReserve);
 });
