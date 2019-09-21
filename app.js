@@ -1,5 +1,6 @@
 var express = require("express");
 var path = require("path");
+var reserve = require("./reserve.html");
 
 var app = express();
 // var PORT = process.env.PORT || 2940;
@@ -9,7 +10,7 @@ var PORT = 2940;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var guests = [
+var reservations = [
     {
         routeName: "maurice",
         name: "Maurice",
@@ -18,6 +19,8 @@ var guests = [
         id: "sauce"
     }
 ];
+
+var waitlisted = [];
 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "home.html"));
@@ -32,30 +35,24 @@ app.get("/tables", function(req, res) {
 });
 
 app.get("/api/tables", function(req, res) {
-    return res.json(guests);
+    return res.json(reservations);
 });
 
-// app.get("/api/tables/:guest", function (req, res) {
-//     var table = req.params.guest;
-
-//     console.log(table);
-
-//     // for (var i = 0; i < guests.length; i++) {
-//     //     if(table === guests[i].routeName) {
-//     //         return res.json(guests[i]);
-//     //     }
-//     // }
-
-//     // return res.json(false);
-// });
-
-app.post("/api/waitlist", function(req, res) {
-    var newGuest = req.body;
-    newGuest.routeName = newGuest.name.replace(/\s+/g, "").toLowerCase();
-    console.log(newGuest);
-    guests.push(newGuest);
-    res.json(newGuest);
+app.et("/api/waitlist", function(req, res) {
+    return res.json(waitlisted);
 });
+
+if(reservations.length > 3) {
+    app.post("/api/waitlist", function(req, res) {
+        waitlisted.push(newReserve);
+        alert("Tables are currently full. We have added you to our waitlist.");
+    });
+} else {
+    app.post("/api/tables", function(req, res) {
+        reservations.push(newReserve);
+        alert("Your reservation is complete!");
+    });
+}
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
