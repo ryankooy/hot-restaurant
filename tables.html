@@ -124,6 +124,17 @@
                 }
 
             });
+
+            $("#clear").on("click", function() {
+                location.reload(true);
+                alert("Clearing...");
+                $.post("/api/clear")
+                .then(function(data) {
+                    event.preventDefault();
+                    location.reload(true);
+
+                });
+            });
     
     
     </script>

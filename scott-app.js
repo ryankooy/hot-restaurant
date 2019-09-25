@@ -47,24 +47,22 @@ app.get("/api/waitlist", function(req, res) {
     return res.json(waitlisted);
 });
 
-
 app.post("/api/tables", function(req, res) {
     var newReserve = req.body;
     newReserve.routeName = newReserve.name.replace(/\s+/g, "").toLowerCase();
     console.log(newReserve);
-    if(reservations.length > 4) {
-        waitlisted.push(newReserve);
-        res.json(newReserve);
-    } else {
+    if(reservations.length > 3) {
         reservations.push(newReserve);
-        res.json(newReserve);
+    } else {
+        waitlisted.push(newReserve);
     }
+  res.json(newReserve);
 });
 
 app.post("/api/clear", function(req, res) {
     reservations = [];
     waitlisted = [];
-});
+})
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
